@@ -1,596 +1,597 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formosa Qualidade - Cestas Básicas Premium</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'verde-principal': '#0B503D',
-            'bege-claro': '#F3EBD7',
-            'amarelo-dourado': '#E6B800',
-            'marrom-suave': '#8B5E3C'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    .gradient-bg { background: linear-gradient(135deg, #0B503D 0%, #2D7A5F 100%); }
-    .gradient-yellow { background: linear-gradient(135deg, #E6B800 0%, #FFD700 100%); }
-    .hero-bg {
-      background: linear-gradient(rgba(11, 80, 61, 0.8), rgba(11, 80, 61, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="%23ffffff" opacity="0.08"/><circle cx="50" cy="80" r="1" fill="%23ffffff" opacity="0.06"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
-    }
-    .product-card { transition: all 0.3s ease; }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-    .cart-item { animation: slideIn 0.3s ease-out; }
-    @keyframes slideIn { from {opacity:0; transform: translateX(20px);} to {opacity:1; transform: translateX(0);} }
-    .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; z-index: 1000; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% {transform: scale(1);} 50% {transform: scale(1.05);} }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formosa Qualidade - Cestas Básicas Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'verde-principal': '#0B503D',
+            'bege-claro': '#F3EBD7',
+            'amarelo-dourado': '#E6B800',
+            'marrom-suave': '#8B5E3C'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-bg { background: linear-gradient(135deg, #0B503D 0%, #2D7A5F 100%); }
+    .gradient-yellow { background: linear-gradient(135deg, #E6B800 0%, #FFD700 100%); }
+    .hero-bg {
+      background: linear-gradient(rgba(11, 80, 61, 0.8), rgba(11, 80, 61, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="%23ffffff" opacity="0.08"/><circle cx="50" cy="80" r="1" fill="%23ffffff" opacity="0.06"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+    }
+    .product-card { transition: all 0.3s ease; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    .cart-item { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from {opacity:0; transform: translateX(20px);} to {opacity:1; transform: translateX(0);} }
+    .floating-whatsapp { position: fixed; bottom: 20px; right: 20px; z-index: 1000; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% {transform: scale(1);} 50% {transform: scale(1.05);} }
+  </style>
 </head>
 <body class="bg-gray-50">
-  <header class="bg-white shadow-lg sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h1 class="text-2xl font-bold text-verde-principal">Formosa Qualidade</h1>
-          <p class="text-sm text-gray-600">Cestas básicas premium</p>
-        </div>
-        <div class="flex items-center space-x-4">
-          <button onclick="toggleCart()" class="relative bg-amarelo-dourado text-verde-principal px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
-            🛒 Carrinho (<span id="cart-count">0</span>)
-          </button>
-          <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors">
-            📱 Contato
-          </a>
-          </div>
-      </div>
-    </div>
-  </header>
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-verde-principal">Formosa Qualidade</h1>
+          <p class="text-sm text-gray-600">Cestas básicas premium</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button onclick="toggleCart()" class="relative bg-amarelo-dourado text-verde-principal px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+            🛒 Carrinho (<span id="cart-count">0</span>)
+          </button>
+          <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+            📱 Contato
+          </a>
+          </div>
+      </div>
+    </div>
+  </header>
 
-  <section class="hero-bg text-white py-20">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-5xl font-bold mb-6">Cestas Básicas de Qualidade</h2>
-      <p class="text-xl mb-8 max-w-2xl mx-auto">Produtos selecionados com carinho para sua família. Entregamos qualidade, economia e praticidade na sua porta.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="scrollToProducts()" class="gradient-yellow text-verde-principal px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform">Ver Produtos</button>
-        <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-verde-principal transition-colors">Falar no WhatsApp</a>
-        </div>
-    </div>
-  </section>
+  <section class="hero-bg text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-5xl font-bold mb-6">Cestas Básicas de Qualidade</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Produtos selecionados com carinho para sua família. Entregamos qualidade, economia e praticidade na sua porta.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="scrollToProducts()" class="gradient-yellow text-verde-principal px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform">Ver Produtos</button>
+        <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-verde-principal transition-colors">Falar no WhatsApp</a>
+        </div>
+    </div>
+  </section>
 
-  <section id="produtos" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h3 class="text-4xl font-bold text-verde-principal mb-4">Nossas Cestas Básicas</h3>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Escolha a cesta ideal para sua família. Todas com produtos frescos e de qualidade.</p>
-      </div>
+  <section id="produtos" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-4xl font-bold text-verde-principal mb-4">Nossas Cestas Básicas</h3>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Escolha a cesta ideal para sua família. Todas com produtos frescos e de qualidade.</p>
+      </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
-            <div class="text-8xl">🧺</div>
-            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">POPULAR</div>
-          </div>
-          <div class="p-8">
-            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Básica Tradicional</h4>
-            <p class="text-gray-600 mb-6">Itens essenciais para família de até 4 pessoas por 1 semana. Produtos básicos e de qualidade.</p>
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <span class="text-4xl font-bold text-verde-principal">R$ 149,90</span>
-                <div class="text-sm text-gray-500 line-through">R$ 179,90</div>
-              </div>
-              <div class="text-right">
-                <div class="text-green-600 font-bold">Economize</div>
-                <div class="text-green-600 font-bold">R$ 30,00</div>
-              </div>
-            </div>
-            <div class="space-y-3">
-              <button onclick="openProductModal('tradicional')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
-              <button onclick="addBasketToCart('tradicional')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
-              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
-            </div>
-          </div>
-        </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
+            <div class="text-8xl">🧺</div>
+            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">POPULAR</div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Básica Tradicional</h4>
+            <p class="text-gray-600 mb-6">Itens essenciais para família de até 4 pessoas por 1 semana. Produtos básicos e de qualidade.</p>
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <span class="text-4xl font-bold text-verde-principal">R$ 149,90</span>
+                <div class="text-sm text-gray-500 line-through">R$ 179,90</div>
+              </div>
+              <div class="text-right">
+                <div class="text-green-600 font-bold">Economize</div>
+                <div class="text-green-600 font-bold">R$ 30,00</div>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <button onclick="openProductModal('tradicional')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
+              <button onclick="addBasketToCart('tradicional')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
+              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-amarelo-dourado">
-          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
-            <div class="text-8xl">👑</div>
-            <div class="absolute top-4 left-4 bg-amarelo-dourado text-verde-principal px-3 py-1 rounded-full text-sm font-bold">PREMIUM</div>
-          </div>
-          <div class="p-8">
-            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Básica Premium</h4>
-            <p class="text-gray-600 mb-6">Mais itens e marcas selecionadas para mais qualidade. Ideal para famílias exigentes.</p>
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <span class="text-4xl font-bold text-verde-principal">R$ 249,90</span>
-                <div class="text-sm text-gray-500 line-through">R$ 299,90</div>
-              </div>
-              <div class="text-right">
-                <div class="text-green-600 font-bold">Economize</div>
-                <div class="text-green-600 font-bold">R$ 50,00</div>
-              </div>
-            </div>
-            <div class="space-y-3">
-              <button onclick="openProductModal('premium')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
-              <button onclick="addBasketToCart('premium')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
-              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-amarelo-dourado">
+          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
+            <div class="text-8xl">👑</div>
+            <div class="absolute top-4 left-4 bg-amarelo-dourado text-verde-principal px-3 py-1 rounded-full text-sm font-bold">PREMIUM</div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Básica Premium</h4>
+            <p class="text-gray-600 mb-6">Mais itens e marcas selecionadas para mais qualidade. Ideal para famílias exigentes.</p>
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <span class="text-4xl font-bold text-verde-principal">R$ 249,90</span>
+                <div class="text-sm text-gray-500 line-through">R$ 299,90</div>
+              </div>
+              <div class="text-right">
+                <div class="text-green-600 font-bold">Economize</div>
+                <div class="text-green-600 font-bold">R$ 50,00</div>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <button onclick="openProductModal('premium')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
+              <button onclick="addBasketToCart('premium')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
+              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
-            <div class="text-8xl">🎯</div>
-            <div class="absolute top-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">PERSONALIZADA</div>
-          </div>
-          <div class="p-8">
-            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Personalizada</h4>
-            <p class="text-gray-600 mb-6">Monte sua cesta do seu jeito! Escolha os produtos que sua família mais gosta.</p>
-            <div class="text-center mb-6">
-              <div class="text-lg text-verde-principal mb-2">A partir de</div>
-              <span class="text-4xl font-bold text-verde-principal">R$ 179,90</span>
-            </div>
-            <div class="space-y-3">
-              <button onclick="openProductModal('personalizada')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
-              <button onclick="addBasketToCart('personalizada')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
-              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-bege-claro to-white flex items-center justify-center relative">
+            <div class="text-8xl">🎯</div>
+            <div class="absolute top-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">PERSONALIZADA</div>
+          </div>
+          <div class="p-8">
+            <h4 class="text-2xl font-bold text-verde-principal mb-3">Cesta Personalizada</h4>
+            <p class="text-gray-600 mb-6">Monte sua cesta do seu jeito! Escolha os produtos que sua família mais gosta.</p>
+            <div class="text-center mb-6">
+              <div class="text-lg text-verde-principal mb-2">A partir de</div>
+              <span class="text-4xl font-bold text-verde-principal">R$ 179,90</span>
+            </div>
+            <div class="space-y-3">
+              <button onclick="openProductModal('personalizada')" class="w-full bg-gray-100 text-verde-principal py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">Ver Detalhes</button>
+              <button onclick="addBasketToCart('personalizada')" class="w-full gradient-bg text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">Adicionar ao Carrinho</button>
+              <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
+            </div>
+          </div>
+        </div>
 
-      </div>
-    </div>
-  </section>
+      </div>
+    </div>
+  </section>
 
-  <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="floating-whatsapp">
-  <div class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors">
-      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-      </svg>
-    </div>
-  </a>
+  <a href="https://wa.me/5589981314000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20cestas%20básicas%20da%20Formosa%20Qualidade." target="_blank" class="floating-whatsapp">
+  <div class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+      </svg>
+    </div>
+  </a>
 
-  <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
-    <div class="p-6 border-b">
-      <div class="flex items-center justify-between">
-        <h3 class="text-xl font-bold text-verde-principal">Seu Carrinho</h3>
-        <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
-      </div>
-    </div>
-    <div id="cart-items" class="p-6 flex-1 overflow-y-auto">
-      <p class="text-gray-500 text-center">Seu carrinho está vazio</p>
-    </div>
-    <div id="cart-footer" class="p-6 border-t hidden">
-      <div class="mb-4">
-        <div class="flex justify-between items-center mb-2">
-          <span class="font-semibold">Subtotal:</span>
-          <span id="cart-subtotal" class="font-bold text-verde-principal">R$ 0,00</span>
-        </div>
-        <div class="mb-4">
-          <input type="text" id="coupon-input" placeholder="Código do cupom" class="w-full p-2 border rounded-lg mb-2">
-          <button onclick="applyCoupon()" class="w-full bg-gray-200 text-verde-principal py-2 rounded-lg hover:bg-gray-300 transition-colors">Aplicar Cupom</button>
-          </div>
-        <div class="flex justify-between items-center mb-4">
-          <span class="text-xl font-bold">Total:</span>
-          <span id="cart-total" class="text-xl font-bold text-verde-principal">R$ 0,00</span>
-        </div>
-      </div>
-      <button onclick="checkout()" class="w-full gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform mb-2">Finalizar Pedido</button>
-      <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
-    </div>
-  </div>
+  <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6 border-b">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold text-verde-principal">Seu Carrinho</h3>
+        <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+      </div>
+    </div>
+    <div id="cart-items" class="p-6 flex-1 overflow-y-auto">
+      <p class="text-gray-500 text-center">Seu carrinho está vazio</p>
+    </div>
+    <div id="cart-footer" class="p-6 border-t hidden">
+      <div class="mb-4">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-semibold">Subtotal:</span>
+          <span id="cart-subtotal" class="font-bold text-verde-principal">R$ 0,00</span>
+        </div>
+        <div class="mb-4">
+          <input type="text" id="coupon-input" placeholder="Código do cupom" class="w-full p-2 border rounded-lg mb-2">
+          <button onclick="applyCoupon()" class="w-full bg-gray-200 text-verde-principal py-2 rounded-lg hover:bg-gray-300 transition-colors">Aplicar Cupom</button>
+          </div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xl font-bold">Total:</span>
+          <span id="cart-total" class="text-xl font-bold text-verde-principal">R$ 0,00</span>
+        </div>
+      </div>
+      <button onclick="checkout()" class="w-full gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform mb-2">Finalizar Pedido</button>
+      <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors">Finalizar no WhatsApp</button>
+    </div>
+  </div>
 
-  <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleCart()"></div>
+  <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleCart()"></div>
 
-  <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="p-6">
-        <div class="flex items-center justify-between mb-4">
-          <h3 id="product-modal-title" class="text-2xl font-bold text-verde-principal"></h3>
-          <button onclick="closeProductModal()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
-        </div>
-        <div id="product-modal-content"></div>
-      </div>
-    </div>
-  </div>
+  <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="product-modal-title" class="text-2xl font-bold text-verde-principal"></h3>
+          <button onclick="closeProductModal()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+        </div>
+        <div id="product-modal-content"></div>
+      </div>
+    </div>
+  </div>
 
-  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-xl max-w-md w-full p-6">
-      <h3 class="text-xl font-bold text-verde-principal mb-4">Finalizar Pedido</h3>
-      <form id="checkout-form">
-        <div class="space-y-4">
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Nome Completo</label>
-            <input type="text" name="nome" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" autocomplete="name">
-          </div>
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Telefone</label>
-            <input type="tel" name="telefone" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="(89) 98131-4000" inputmode="tel" pattern="^\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}$" title="Use o formato (89) 98131-4000">
-          </div>
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Rua</label>
-            <input type="text" name="rua" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="Ex: Rua das Flores" autocomplete="address-line1">
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-1">Número</label>
-              <input type="text" name="numero" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="123" autocomplete="address-line2">
-            </div>
-            <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-1">Bairro</label>
-              <input type="text" name="bairro" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="Centro" autocomplete="address-level2">
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Forma de Pagamento</label>
-            <select name="pagamento" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal">
-              <option value="">Selecione...</option>
-              <option value="pix">PIX</option>
-              <option value="cartao">Cartão</option>
-              <option value="dinheiro">Dinheiro</option>
-            </select>
-            </div>
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Observações</label>
-            <textarea name="observacoes" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" rows="3" placeholder="Alguma observação especial para a entrega..."></textarea>
-          </div>
-        </div>
-        <div class="flex space-x-3 mt-6">
-          <button type="button" onclick="closeCheckout()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Cancelar</button>
-          <button type="submit" class="flex-1 gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform">Confirmar Pedido</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6">
+      <h3 class="text-xl font-bold text-verde-principal mb-4">Finalizar Pedido</h3>
+      <form id="checkout-form">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Nome Completo</label>
+            <input type="text" name="nome" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" autocomplete="name">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Telefone</label>
+            <input type="tel" name="telefone" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="(89) 98131-4000" inputmode="tel" pattern="^\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}$" title="Use o formato (89) 98131-4000">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Rua</label>
+            <input type="text" name="rua" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="Ex: Rua das Flores" autocomplete="address-line1">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Número</label>
+              <input type="text" name="numero" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="123" autocomplete="address-line2">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Bairro</label>
+              <input type="text" name="bairro" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" placeholder="Centro" autocomplete="address-level2">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Forma de Pagamento</label>
+            <select name="pagamento" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal">
+              <option value="">Selecione...</option>
+              <option value="pix">PIX</option>
+              <option value="cartao">Cartão</option>
+              <option value="dinheiro">Dinheiro</option>
+            </select>
+            </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Observações</label>
+            <textarea name="observacoes" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-verde-principal" rows="3" placeholder="Alguma observação especial para a entrega..."></textarea>
+          </div>
+        </div>
+        <div class="flex space-x-3 mt-6">
+          <button type="button" onclick="closeCheckout()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Cancelar</button>
+          <button type="submit" class="flex-1 gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform">Confirmar Pedido</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <script>
-    let cart = [];
-    let cartCount = 0;
-    let cartTotal = 0;
-    let appliedCoupon = null;
+  <script>
+    let cart = [];
+    let cartCount = 0;
+    let cartTotal = 0;
+    let appliedCoupon = null;
 
-    const products = {
-      tradicional: {
-        name: 'Cesta Básica Tradicional',
-        price: 149.90,
-        items: [
-          { name: 'Arroz 5kg', price: 28.90, quantity: 1 },
-          { name: 'Feijão 2kg', price: 16.50, quantity: 1 },
-          { name: 'Macarrão espaguete 500g', price: 4.20, quantity: 1 },
-          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
-          { name: 'Açúcar 2kg', price: 7.80, quantity: 1 },
-          { name: 'Café 250g', price: 12.90, quantity: 1 },
-          { name: 'Farinha 1kg', price: 4.50, quantity: 1 },
-          { name: 'Sal 1kg', price: 2.20, quantity: 1 },
-          { name: 'Molho de tomate 340g', price: 3.80, quantity: 1 },
-          { name: 'Biscoito 400g', price: 6.90, quantity: 1 },
-          { name: 'Leite em pó 200g', price: 8.90, quantity: 1 }
-        ]
-      },
-      premium: {
-        name: 'Cesta Básica Premium',
-        price: 249.90,
-        items: [
-          { name: 'Arroz 5kg Premium', price: 35.90, quantity: 1 },
-          { name: 'Feijão 2kg Premium', price: 22.50, quantity: 1 },
-          { name: 'Azeite 500ml', price: 18.90, quantity: 1 },
-          { name: 'Macarrão 1kg Premium', price: 8.90, quantity: 1 },
-          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
-          { name: 'Açúcar 5kg', price: 18.90, quantity: 1 },
-          { name: 'Café 500g Premium', price: 24.90, quantity: 1 },
-          { name: 'Leite em pó 400g', price: 16.90, quantity: 1 },
-          { name: 'Farinha 2kg', price: 8.90, quantity: 1 },
-          { name: 'Achocolatado 400g', price: 12.90, quantity: 1 },
-          { name: 'Biscoito 800g Premium', price: 14.90, quantity: 1 },
-          { name: 'Molho de tomate premium 340g', price: 6.90, quantity: 1 },
-          { name: 'Frutas variadas 1kg', price: 12.90, quantity: 1 }
-        ]
-      },
-      personalizada: {
-        name: 'Cesta Personalizada',
-        price: 179.90,
-        items: [
-          { name: 'Arroz 5kg', price: 28.90, quantity: 1 },
-          { name: 'Feijão 2kg', price: 16.50, quantity: 1 },
-          { name: 'Macarrão espaguete 500g', price: 4.20, quantity: 1 },
-          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
-          { name: 'Açúcar 2kg', price: 7.80, quantity: 1 },
-          { name: 'Café 250g', price: 12.90, quantity: 1 },
-          { name: 'Farinha 1kg', price: 4.50, quantity: 1 },
-          { name: 'Sal 1kg', price: 2.20, quantity: 1 },
-          { name: 'Molho de tomate 340g', price: 3.80, quantity: 1 },
-          { name: 'Biscoito 400g', price: 6.90, quantity: 1 },
-          { name: 'Leite em pó 200g', price: 8.90, quantity: 1 },
-          { name: 'Leite 2L', price: 6.90, quantity: 1 },
-          { name: 'Milho enlatado', price: 4.50, quantity: 1 },
-          { name: 'Ervilha enlatada', price: 4.50, quantity: 1 },
-          { name: 'Atum enlatado', price: 8.90, quantity: 1 },
-          { name: 'Detergente', price: 3.20, quantity: 1 },
-          { name: 'Desinfetante', price: 4.90, quantity: 1 }
-        ]
-      }
-    };
+    const products = {
+      tradicional: {
+        name: 'Cesta Básica Tradicional',
+        price: 149.90,
+        items: [
+          { name: 'Arroz 5kg', price: 28.90, quantity: 1 },
+          { name: 'Feijão 2kg', price: 16.50, quantity: 1 },
+          { name: 'Macarrão espaguete 500g', price: 4.20, quantity: 1 },
+          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
+          { name: 'Açúcar 2kg', price: 7.80, quantity: 1 },
+          { name: 'Café 250g', price: 12.90, quantity: 1 },
+          { name: 'Farinha 1kg', price: 4.50, quantity: 1 },
+          { name: 'Sal 1kg', price: 2.20, quantity: 1 },
+          { name: 'Molho de tomate 340g', price: 3.80, quantity: 1 },
+          { name: 'Biscoito 400g', price: 6.90, quantity: 1 },
+          { name: 'Leite em pó 200g', price: 8.90, quantity: 1 }
+        ]
+      },
+      premium: {
+        name: 'Cesta Básica Premium',
+        price: 249.90,
+        items: [
+          { name: 'Arroz 5kg Premium', price: 35.90, quantity: 1 },
+          { name: 'Feijão 2kg Premium', price: 22.50, quantity: 1 },
+          { name: 'Azeite 500ml', price: 18.90, quantity: 1 },
+          { name: 'Macarrão 1kg Premium', price: 8.90, quantity: 1 },
+          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
+          { name: 'Açúcar 5kg', price: 18.90, quantity: 1 },
+          { name: 'Café 500g Premium', price: 24.90, quantity: 1 },
+          { name: 'Leite em pó 400g', price: 16.90, quantity: 1 },
+          { name: 'Farinha 2kg', price: 8.90, quantity: 1 },
+          { name: 'Achocolatado 400g', price: 12.90, quantity: 1 },
+          { name: 'Biscoito 800g Premium', price: 14.90, quantity: 1 },
+          { name: 'Molho de tomate premium 340g', price: 6.90, quantity: 1 },
+          { name: 'Frutas variadas 1kg', price: 12.90, quantity: 1 }
+        ]
+      },
+      personalizada: {
+        name: 'Cesta Personalizada',
+        price: 179.90,
+        items: [
+          { name: 'Arroz 5kg', price: 28.90, quantity: 1 },
+          { name: 'Feijão 2kg', price: 16.50, quantity: 1 },
+          { name: 'Macarrão espaguete 500g', price: 4.20, quantity: 1 },
+          { name: 'Óleo 900ml', price: 8.90, quantity: 1 },
+          { name: 'Açúcar 2kg', price: 7.80, quantity: 1 },
+          { name: 'Café 250g', price: 12.90, quantity: 1 },
+          { name: 'Farinha 1kg', price: 4.50, quantity: 1 },
+          { name: 'Sal 1kg', price: 2.20, quantity: 1 },
+          { name: 'Molho de tomate 340g', price: 3.80, quantity: 1 },
+          { name: 'Biscoito 400g', price: 6.90, quantity: 1 },
+          { name: 'Leite em pó 200g', price: 8.90, quantity: 1 },
+          { name: 'Leite 2L', price: 6.90, quantity: 1 },
+          { name: 'Milho enlatado', price: 4.50, quantity: 1 },
+          { name: 'Ervilha enlatada', price: 4.50, quantity: 1 },
+          { name: 'Atum enlatado', price: 8.90, quantity: 1 },
+          { name: 'Detergente', price: 3.20, quantity: 1 },
+          { name: 'Desinfetante', price: 4.90, quantity: 1 }
+        ]
+      }
+    };
 
-    function scrollToProducts() {
-      document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
-    }
+    function scrollToProducts() {
+      document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+    }
 
-    function openProductModal(productId) {
-      const product = products[productId];
-      const modal = document.getElementById('product-modal');
-      const title = document.getElementById('product-modal-title');
-      const content = document.getElementById('product-modal-content');
+    function openProductModal(productId) {
+      const product = products[productId];
+      const modal = document.getElementById('product-modal');
+      const title = document.getElementById('product-modal-title');
+      const content = document.getElementById('product-modal-content');
 
-      title.textContent = product.name;
+      title.textContent = product.name;
 
-      content.innerHTML = `
-        <div class="mb-6">
-          <div class="text-3xl font-bold text-verde-principal mb-4">R$ ${product.price.toFixed(2)}</div>
-          <p class="text-gray-600 mb-4">Personalize as quantidades dos itens da sua cesta:</p>
-        </div>
-        <div class="space-y-3 mb-6 max-h-96 overflow-y-auto">
-          ${product.items.map((item, index) => `
-            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div class="flex-1">
-                <span class="font-semibold">${item.name}</span>
-                <div class="text-sm text-gray-600">R$ ${item.price.toFixed(2)} cada</div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="changeQuantity('${productId}', ${index}, -1)" class="w-8 h-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors">-</button>
-                <span id="qty-${productId}-${index}" class="w-8 text-center font-semibold">${item.quantity}</span>
-                <button onclick="changeQuantity('${productId}', ${index}, 1)" class="w-8 h-8 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">+</button>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        <div class="border-t pt-4">
-          <div class="flex justify-between items-center mb-4">
-            <span class="text-xl font-bold">Total:</span>
-            <span id="modal-total-${productId}" class="text-xl font-bold text-verde-principal">R$ ${product.price.toFixed(2)}</span>
-          </div>
-          <div class="flex space-x-3">
-            <button onclick="closeProductModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Cancelar</button>
-            <button onclick="addCustomBasketToCart('${productId}')" class="flex-1 gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-      `;
+      content.innerHTML = `
+        <div class="mb-6">
+          <div class="text-3xl font-bold text-verde-principal mb-4">R$ ${product.price.toFixed(2)}</div>
+          <p class="text-gray-600 mb-4">Personalize as quantidades dos itens da sua cesta:</p>
+        </div>
+        <div class="space-y-3 mb-6 max-h-96 overflow-y-auto">
+          ${product.items.map((item, index) => `
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div class="flex-1">
+                <span class="font-semibold">${item.name}</span>
+                <div class="text-sm text-gray-600">R$ ${item.price.toFixed(2)} cada</div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button onclick="changeQuantity('${productId}', ${index}, -1)" class="w-8 h-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors">-</button>
+                <span id="qty-${productId}-${index}" class="w-8 text-center font-semibold">${item.quantity}</span>
+                <button onclick="changeQuantity('${productId}', ${index}, 1)" class="w-8 h-8 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">+</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="border-t pt-4">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xl font-bold">Total:</span>
+            <span id="modal-total-${productId}" class="text-xl font-bold text-verde-principal">R$ ${product.price.toFixed(2)}</span>
+          </div>
+          <div class="flex space-x-3">
+            <button onclick="closeProductModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Cancelar</button>
+            <button onclick="addCustomBasketToCart('${productId}')" class="flex-1 gradient-yellow text-verde-principal py-3 rounded-lg font-bold hover:scale-105 transition-transform">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+      `;
 
-      modal.classList.remove('hidden');
-    }
+      modal.classList.remove('hidden');
+    }
 
-    function closeProductModal() {
-      document.getElementById('product-modal').classList.add('hidden');
-    }
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
 
-    function changeQuantity(productId, itemIndex, change) {
-      const product = products[productId];
-      const item = product.items[itemIndex];
+    function changeQuantity(productId, itemIndex, change) {
+      const product = products[productId];
+      const item = product.items[itemIndex];
 
-      item.quantity = Math.max(0, item.quantity + change);
+      item.quantity = Math.max(0, item.quantity + change);
 
-      document.getElementById(`qty-${productId}-${itemIndex}`).textContent = item.quantity;
+      document.getElementById(`qty-${productId}-${itemIndex}`).textContent = item.quantity;
 
-      const newTotal = product.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      document.getElementById(`modal-total-${productId}`).textContent = `R$ ${newTotal.toFixed(2)}`;
-    }
+      const newTotal = product.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById(`modal-total-${productId}`).textContent = `R$ ${newTotal.toFixed(2)}`;
+    }
 
-    function addCustomBasketToCart(productId) {
-      const product = products[productId];
-      const customItems = product.items.filter(item => item.quantity > 0);
-      const total = customItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    function addCustomBasketToCart(productId) {
+      const product = products[productId];
+      const customItems = product.items.filter(item => item.quantity > 0);
+      const total = customItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-      const basketItem = {
-        id: Date.now(),
-        name: product.name,
-        price: total,
-        items: customItems.map(item => ({...item})),
-        isBasket: true
-      };
+      const basketItem = {
+        id: Date.now(),
+        name: product.name,
+        price: total,
+        items: customItems.map(item => ({...item})),
+        isBasket: true
+      };
 
-      cart.push(basketItem);
-      updateCart();
-      closeProductModal();
-      showNotification(`${product.name} adicionado ao carrinho!`);
-    }
+      cart.push(basketItem);
+      updateCart();
+      closeProductModal();
+      showNotification(`${product.name} adicionado ao carrinho!`);
+    }
 
-    function addBasketToCart(productId) {
-      const product = products[productId];
-      const basketItem = {
-        id: Date.now(),
-        name: product.name,
-        price: product.price,
-        items: product.items.map(item => ({...item})),
-        isBasket: true
-      };
+    function addBasketToCart(productId) {
+      const product = products[productId];
+      const basketItem = {
+        id: Date.now(),
+        name: product.name,
+        price: product.price,
+        items: product.items.map(item => ({...item})),
+        isBasket: true
+      };
 
-      cart.push(basketItem);
-      updateCart();
-      showNotification(`${product.name} adicionado ao carrinho!`);
-    }
+      cart.push(basketItem);
+      updateCart();
+      showNotification(`${product.name} adicionado ao carrinho!`);
+    }
 
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      updateCart();
-    }
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
 
-    function updateCart() {
-      cartCount = cart.length;
-      cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
+    function updateCart() {
+      cartCount = cart.length;
+      cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
 
-      document.getElementById('cart-count').textContent = cartCount;
+      document.getElementById('cart-count').textContent = cartCount;
 
-      const cartItems = document.getElementById('cart-items');
-      const cartFooter = document.getElementById('cart-footer');
+      const cartItems = document.getElementById('cart-items');
+      const cartFooter = document.getElementById('cart-footer');
 
-      if (cartCount === 0) {
-        cartItems.innerHTML = '<p class="text-gray-500 text-center">Seu carrinho está vazio</p>';
-        cartFooter.classList.add('hidden');
-      } else {
-        cartItems.innerHTML = cart.map(item => `
-          <div class="cart-item p-3 border-b">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-verde-principal">${item.name}</h4>
-              <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">🗑️</button>
-            </div>
-            <div class="text-lg font-bold text-verde-principal mb-2">R$ ${item.price.toFixed(2)}</div>
-            ${item.isBasket ? `
-              <div class="bg-gray-50 p-2 rounded text-xs">
-                <p class="font-semibold mb-1">Itens da cesta:</p>
-                ${item.items.map(basketItem =>
-                  basketItem.quantity > 0 ?
-                  `<div class="flex justify-between">
-                    <span>${basketItem.name}</span>
-                    <span>${basketItem.quantity}x R$ ${basketItem.price.toFixed(2)}</span>
-                  </div>` : ''
-                ).join('')}
-              </div>
-            ` : ''}
-          </div>
-        `).join('');
-        cartFooter.classList.remove('hidden');
-      }
+      if (cartCount === 0) {
+        cartItems.innerHTML = '<p class="text-gray-500 text-center">Seu carrinho está vazio</p>';
+        cartFooter.classList.add('hidden');
+      } else {
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item p-3 border-b">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-verde-principal">${item.name}</h4>
+              <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">🗑️</button>
+            </div>
+            <div class="text-lg font-bold text-verde-principal mb-2">R$ ${item.price.toFixed(2)}</div>
+            ${item.isBasket ? `
+              <div class="bg-gray-50 p-2 rounded text-xs">
+                <p class="font-semibold mb-1">Itens da cesta:</p>
+                ${item.items.map(basketItem =>
+                  basketItem.quantity > 0 ?
+                  `<div class="flex justify-between">
+                    <span>${basketItem.name}</span>
+                    <span>${basketItem.quantity}x R$ ${basketItem.price.toFixed(2)}</span>
+                  </div>` : ''
+                ).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `).join('');
+        cartFooter.classList.remove('hidden');
+      }
 
-      updateCartTotals();
-    }
+      updateCartTotals();
+    }
 
-    function updateCartTotals() {
-      let subtotal = cartTotal;
-      let discount = 0;
+    function updateCartTotals() {
+      let subtotal = cartTotal;
+      let discount = 0;
 
-      if (appliedCoupon === 'PRIMEIRACOMPRA') {
-        discount = subtotal * 0.1;
-      }
+      if (appliedCoupon === 'PRIMEIRACOMPRA') {
+        discount = subtotal * 0.1;
+      }
 
-      const total = subtotal - discount;
+      const total = subtotal - discount;
 
-      document.getElementById('cart-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
-      document.getElementById('cart-total').textContent = `R$ ${total.toFixed(2)}`;
-    }
+      document.getElementById('cart-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+      document.getElementById('cart-total').textContent = `R$ ${total.toFixed(2)}`;
+    }
 
-    function applyCoupon() {
-      const couponInput = document.getElementById('coupon-input');
-      const coupon = couponInput.value.toUpperCase();
+    function applyCoupon() {
+      const couponInput = document.getElementById('coupon-input');
+      const coupon = couponInput.value.toUpperCase();
 
-      if (coupon === 'PRIMEIRACOMPRA') {
-        appliedCoupon = coupon;
-        updateCartTotals();
-        showNotification('Cupom aplicado! 10% de desconto');
-        couponInput.value = '';
-      } else {
-        showNotification('Cupom inválido', 'error');
-      }
-    }
+      if (coupon === 'PRIMEIRACOMPRA') {
+        appliedCoupon = coupon;
+        updateCartTotals();
+        showNotification('Cupom aplicado! 10% de desconto');
+        couponInput.value = '';
+      } else {
+        showNotification('Cupom inválido', 'error');
+      }
+    }
 
-    function toggleCart() {
-      const sidebar = document.getElementById('cart-sidebar');
-      const overlay = document.getElementById('cart-overlay');
+    function toggleCart() {
+      const sidebar = document.getElementById('cart-sidebar');
+      const overlay = document.getElementById('cart-overlay');
 
-      sidebar.classList.toggle('translate-x-full');
-      overlay.classList.toggle('hidden');
-    }
+      sidebar.classList.toggle('translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
 
-    function checkout() {
-      if (cart.length === 0) {
-        showNotification('Adicione itens ao carrinho primeiro', 'error');
-        return;
-      }
-      // Fecha carrinho e abre o formulário SEMPRE
-      const sidebar = document.getElementById('cart-sidebar');
-      const overlay = document.getElementById('cart-overlay');
-      if (!sidebar.classList.contains('translate-x-full')) {
-        toggleCart();
-      }
-      document.getElementById('checkout-modal').classList.remove('hidden');
-    }
+    function checkout() {
+      if (cart.length === 0) {
+        showNotification('Adicione itens ao carrinho primeiro', 'error');
+        return;
+      }
+      // Fecha carrinho e abre o formulário SEMPRE
+      const sidebar = document.getElementById('cart-sidebar');
+      const overlay = document.getElementById('cart-overlay');
+      if (!sidebar.classList.contains('translate-x-full')) {
+        toggleCart();
+      }
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
 
-    function closeCheckout() {
-      document.getElementById('checkout-modal').classList.add('hidden');
-    }
+    function closeCheckout() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
 
-    function showNotification(message, type = 'success') {
-      const notification = document.createElement('div');
-      notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg text-white font-semibold ${type === 'error' ? 'bg-red-500' : 'bg-green-500'}`;
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      setTimeout(() => { notification.remove(); }, 3000);
-    }
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg text-white font-semibold ${type === 'error' ? 'bg-red-500' : 'bg-green-500'}`;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      setTimeout(() => { notification.remove(); }, 3000);
+    }
 
-    // Envio do formulário — envia para WhatsApp já com os dados do cliente
-    document.getElementById('checkout-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    // Envio do formulário — envia para WhatsApp já com os dados do cliente
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData);
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
 
-      // Normaliza pagamento para texto amigável
-      const pagamentoMap = { pix: 'PIX', cartao: 'Cartão', dinheiro: 'Dinheiro' };
-      const pagamentoTxt = pagamentoMap[data.pagamento] || data.pagamento;
+      // Normaliza pagamento para texto amigável
+      const pagamentoMap = { pix: 'PIX', cartao: 'Cartão', dinheiro: 'Dinheiro' };
+      const pagamentoTxt = pagamentoMap[data.pagamento] || data.pagamento;
 
-      let message = `🛒 *NOVO PEDIDO - FORMOSA QUALIDADE*\n\n`;
-      message += `👤 *Cliente:* ${data.nome}\n`;
-      message += `📱 *Telefone:* ${data.telefone}\n`;
-      message += `📍 *Endereço:* ${data.rua}, ${data.numero} - ${data.bairro}\n`;
-      message += `💳 *Pagamento:* ${pagamentoTxt}\n`;
-      if (data.observacoes) message += `📝 *Observações:* ${data.observacoes}\n`;
+      let message = `🛒 *NOVO PEDIDO - FORMOSA QUALIDADE*\n\n`;
+      message += `👤 *Cliente:* ${data.nome}\n`;
+      message += `📱 *Telefone:* ${data.telefone}\n`;
+      message += `📍 *Endereço:* ${data.rua}, ${data.numero} - ${data.bairro}\n`;
+      message += `💳 *Pagamento:* ${pagamentoTxt}\n`;
+      if (data.observacoes) message += `📝 *Observações:* ${data.observacoes}\n`;
 
-      message += `\n🛍️ *ITENS DO PEDIDO:*\n`;
-      cart.forEach(item => {
-        message += `\n📦 *${item.name}* - R$ ${item.price.toFixed(2)}\n`;
-        if (item.isBasket && item.items) {
-          message += `*Itens da cesta:*\n`;
-          item.items.forEach(basketItem => {
-            if (basketItem.quantity > 0) {
-              message += `• ${basketItem.name} - ${basketItem.quantity}x\n`;
-            }
-          });
-        }
-      });
+      message += `\n🛍️ *ITENS DO PEDIDO:*\n`;
+      cart.forEach(item => {
+        message += `\n📦 *${item.name}* - R$ ${item.price.toFixed(2)}\n`;
+        if (item.isBasket && item.items) {
+          message += `*Itens da cesta:*\n`;
+          item.items.forEach(basketItem => {
+            if (basketItem.quantity > 0) {
+              message += `• ${basketItem.name} - ${basketItem.quantity}x\n`;
+            }
+          });
+        }
+      });
 
-      let subtotal = cartTotal;
-      let discount = 0;
+      let subtotal = cartTotal;
+      let discount = 0;
 
-      // Desconto do cupom
-      if (appliedCoupon === 'PRIMEIRACOMPRA') discount = subtotal * 0.1;
-      // CÓDIGO REMOVIDO: A linha abaixo foi retirada para eliminar o desconto do PIX
-      // if (data.pagamento === 'pix') discount += subtotal * 0.05;
+      // Desconto do cupom
+      if (appliedCoupon === 'PRIMEIRACOMPRA') discount = subtotal * 0.1;
+      // CÓDIGO REMOVIDO: A linha abaixo foi retirada para eliminar o desconto do PIX
+      // if (data.pagamento === 'pix') discount += subtotal * 0.05;
 
-      const total = subtotal - discount;
+      const total = subtotal - discount;
 
-      message += `\n💰 *RESUMO:*\n`;
-      message += `Subtotal: R$ ${subtotal.toFixed(2)}\n`;
-      if (discount > 0) message += `Descontos: -R$ ${discount.toFixed(2)}\n`;
-      message += `*TOTAL: R$ ${total.toFixed(2)}*\n`;
+      message += `\n💰 *RESUMO:*\n`;
+      message += `Subtotal: R$ ${subtotal.toFixed(2)}\n`;
+      if (discount > 0) message += `Descontos: -R$ ${discount.toFixed(2)}\n`;
+      message += `*TOTAL: R$ ${total.toFixed(2)}*\n`;
 
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/5589981314000?text=${encodedMessage}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/5589981314000?text=${encodedMessage}`;
 
-      // Fecha modal e abre WhatsApp
-      closeCheckout();
-      const link = document.createElement('a');
-      link.href = whatsappUrl;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Fecha modal e abre WhatsApp
+      closeCheckout();
+      const link = document.createElement('a');
+      link.href = whatsappUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-      showNotification('Abrindo WhatsApp com seu pedido!');
+      showNotification('Abrindo WhatsApp com seu pedido!');
 
-      setTimeout(() => {
-        cart = [];
-        updateCart();
-      }, 800);
-    });
+      setTimeout(() => {
+        cart = [];
+        updateCart();
+      }, 800);
+    });
 
-    updateCart();
-  </script>
+    updateCart();
+  </script>
 
-  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e9218507b5af26',t:'MTc1NTA5NzczOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e9218507b5af26',t:'MTc1NTA5NzczOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
+
